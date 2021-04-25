@@ -8,6 +8,7 @@ then
   export DB_HOST="${BASH_REMATCH[3]}" # most probably localhost
 
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_activities_test
+  createdb -h $DB_HOST --owner $DB_USERNAME parasut_auth_test
 else
   echo "-----> Unexpected DATABASE_URL format"
 fi
