@@ -11,6 +11,8 @@ then
   echo "       Created database parasut_activities_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_auth_test
   echo "       Created database parasut_auth_test"
+  createdb -h $DB_HOST --owner $DB_USERNAME parasut_global_test
+  echo "       Created database parasut_global_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_search_test
   echo "       Created database parasut_search_test"
 else
