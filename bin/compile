@@ -11,10 +11,6 @@ then
   echo "       Created database parasut_activities_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_auth_test
   echo "       Created database parasut_auth_test"
-  psql -h localhost -c 'CREATE COLLATION "tr_TR" FROM "en_US";' postgres_buildpack_db > /dev/null
-  echo "       Created tr_TR collation"
-  psql -h localhost -c 'CREATE COLLATION "tr_TR.utf8" FROM "en_US.utf8";' postgres_buildpack_db > /dev/null
-  echo "       Created tr_TR.utf8 collation"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_global_test
   echo "       Created database parasut_global_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_search_test
