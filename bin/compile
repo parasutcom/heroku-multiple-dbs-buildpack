@@ -15,6 +15,16 @@ then
   echo "       Created database parasut_global_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_search_test
   echo "       Created database parasut_search_test"
+
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR" FROM "en_US";' postgres_buildpack_db > /dev/null
+  echo "       Created tr_TR collation postgres_buildpack_db"
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR.utf8" FROM "en_US.utf8";' postgres_buildpack_db > /dev/null
+  echo "       Created tr_TR.utf8 collation postgres_buildpack_db"
+
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR" FROM "en_US";' parasut_global_test > /dev/null
+  echo "       Created tr_TR collation for parasut_global_test"
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR.utf8" FROM "en_US.utf8";' parasut_global_test > /dev/null
+  echo "       Created tr_TR.utf8 collation for parasut_global_test"
 else
   echo "-----> Unexpected DATABASE_URL format"
 fi
