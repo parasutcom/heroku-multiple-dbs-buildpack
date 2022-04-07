@@ -7,6 +7,10 @@ then
   export DB_USERNAME="${BASH_REMATCH[1]}" # random value created by the buildpack
   export DB_HOST="${BASH_REMATCH[3]}" # most probably localhost
 
+  createdb -h $DB_HOST --owner $DB_USERNAME parasut_company_db1_test
+  echo "       Created database parasut_company_db1_test"
+  createdb -h $DB_HOST --owner $DB_USERNAME parasut_company_db2_test
+  echo "       Created database parasut_company_db2_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_activities_test
   echo "       Created database parasut_activities_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_auth_test
@@ -15,6 +19,16 @@ then
   echo "       Created database parasut_global_test"
   createdb -h $DB_HOST --owner $DB_USERNAME parasut_search_test
   echo "       Created database parasut_search_test"
+
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR" FROM "en_US";' parasut_company_db1_test > /dev/null
+  echo "       Created tr_TR collation parasut_company_db1_test"
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR.utf8" FROM "en_US.utf8";' parasut_company_db1_test > /dev/null
+  echo "       Created tr_TR.utf8 collation parasut_company_db1_test"
+
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR" FROM "en_US";' parasut_company_db2_test > /dev/null
+  echo "       Created tr_TR collation parasut_company_db2_test"
+  psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR.utf8" FROM "en_US.utf8";' parasut_company_db2_test > /dev/null
+  echo "       Created tr_TR.utf8 collation parasut_company_db2_test"
 
   psql -h localhost -c 'CREATE COLLATION IF NOT EXISTS "tr_TR" FROM "en_US";' postgres_buildpack_db > /dev/null
   echo "       Created tr_TR collation postgres_buildpack_db"
